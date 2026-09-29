@@ -6,6 +6,7 @@ public class Flipper : MonoBehaviour
     public float flipSpd;
     public float boostForce;
     public float side = 1; // 1 means left, -1 means right
+    public AudioClip pressSnd;
     private Rigidbody2D rb;
     private float defaultRot;
 
@@ -17,6 +18,9 @@ public class Flipper : MonoBehaviour
     private void Update()
     {
         bool keyPressed = side >= 0 ? Input.GetButton("PosX") : Input.GetButton("NegX");
+
+        if (Input.GetButtonDown("PosX") && side >= 0 || Input.GetButtonDown("NegX") && side < 0)
+            AudioSource.PlayClipAtPoint(pressSnd, transform.position);
         if (keyPressed)
         {
             float rot = transform.eulerAngles.z;
@@ -33,11 +37,11 @@ public class Flipper : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, transform.eulerAngles.y, defaultRot), 15f * Time.deltaTime);
         }
     }
-    private void OnCollisionEnter2D(Collision2D coll) 
+    private void OnCollisionStay2D(Collision2D coll) 
     {
         if (coll.collider.CompareTag("Ball") && rb.angularVelocity > 0f) 
         {
-            coll.collider.GetComponent<Rigidbody2D>().AddForce(transform.up * boostForce);
+            coll.collider.GetComponent<Rigidbody2D>().linearVelocity += (Vector2)transform.up * boostForce;
         }
     }
 }

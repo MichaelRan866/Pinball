@@ -212,7 +212,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.54, y: 1.11, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4816764596655823174}
@@ -267,5 +267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfdd9d041abf71c44afcdaf1adcaf2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bumper
-  boost: 15
+  score: 100
+  boost: 25
+  bumpShake: 1.25
+  triggerSnd: {fileID: 8300000, guid: 602b7e0979e82c043b30d865495a6e8a, type: 3}
   edge: {fileID: 6438441931562914011}
